@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Calculator group suite">
+    <test name="Groups">
+        <groups>
+            <define name="General">
+                <include name="general"/>
+            </define>
+            <define name="Additional">
+                <include name="additional"/>
+            </define>
+            <run>
+                <include name="General"/>
+                <include name="Additional"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="CalculatorDivTest"/>
+        </classes>
+    </test>
+</suite>
