@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class BrowserService {
-
     private WebDriver driver = null;
     private DriverManagerType driverManagerType;
 
