@@ -8,6 +8,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.util.HashMap;
+
+import static configuration.ReadProperties.getDownloadPath;
+
 public class BrowserService {
     private WebDriver driver = null;
     private DriverManagerType driverManagerType;
@@ -44,6 +48,9 @@ public class BrowserService {
         chromeOptions.addArguments("--silent");
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.addArguments("--incognito");
+        HashMap<String, Object> preference = new HashMap<>();
+        preference.put("profile.default_content_settings.popups", 0);
+        preference.put("download.default_directory", getDownloadPath());
         return chromeOptions;
 
     }

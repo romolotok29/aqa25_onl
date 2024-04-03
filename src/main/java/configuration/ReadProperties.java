@@ -16,20 +16,16 @@ public class ReadProperties {
         }
     }
 
-    public static String getUrl(){
-        return properties.getProperty("url");
-    }
-
     public static String browserName() {
         return properties.getProperty("browser");
     }
 
-    public static String getUserName(){
-        return properties.getProperty("username");
+    public static int getTimeout() {
+        return Integer.parseInt(properties.getProperty("timeout"));
     }
 
-    public static String getPassword(){
-        return properties.getProperty("password");
+    public static String getDownloadPath() {
+        return ReadProperties.class.getClassLoader().getResource(properties.getProperty("downloadDir")).getPath();
     }
 
     public static boolean isHeadless() {
