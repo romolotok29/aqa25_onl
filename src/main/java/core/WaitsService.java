@@ -14,8 +14,6 @@ import java.io.File;
 import java.time.Duration;
 import java.util.List;
 
-import static configuration.ReadProperties.getDownloadPath;
-
 public class WaitsService {
 
     private WebDriverWait wait;
@@ -36,33 +34,5 @@ public class WaitsService {
 
     public WebElement waitForVisibility(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-    public List<WebElement> waitForVisibilityAllElements(By locator) {
-        return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-    }
-
-    public boolean waitForInvisible(By locator) {
-        return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-    }
-
-    public Alert waitForAlert() {
-        return wait.until(ExpectedConditions.alertIsPresent());
-    }
-
-    public Boolean fluentWaitForDownload(String fileName) {
-        File targetFile = new File(getDownloadPath(), fileName);
-        Wait<File> fluent = new FluentWait<>(targetFile)
-                .withTimeout(Duration.ofSeconds(20))
-                .pollingEvery(Duration.ofMillis(1000))
-                .ignoring(RuntimeException.class)
-                .withMessage("No such file");
-        return fluent.until(downloadedFile -> targetFile.exists());
-    }
-
-    public WebElement waitForElementWithText(By locator, String text) {
-        if (wait.until(ExpectedConditions.textToBe(locator, text))) {
-            return waitForVisibility(locator);
-        }
-        return null;
     }
 }
