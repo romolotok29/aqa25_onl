@@ -35,6 +35,14 @@ public class LocatorsSauceDemoTest {
         Assert.assertTrue(driver.findElement(By.partialLinkText("Reset App")).isDisplayed());
     }
 
+    @Test(testName = "Show all items")
+    public void allItemsTest() throws InterruptedException {
+        driver.findElement(By.cssSelector("#react-burger-menu-btn")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//a[@id='about_sidebar_link']/preceding::a")).click();
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
+    }
+
     @Test(testName = "Empty shopping cart")
     public void emptyCartTest() {
         driver.findElement(By.cssSelector(".primary_header .shopping_cart_container")).click();
@@ -52,18 +60,18 @@ public class LocatorsSauceDemoTest {
     public void itemPageTest() {
         driver.findElement(By.xpath("//a[@id='item_4_title_link']")).click();
         Assert.assertTrue(driver.findElement(By.xpath("//div[text()='Sauce Labs Backpack']")).isDisplayed());
-        //Assert.assertEquals(driver.findElement(By.xpath("//div[contains(text(), 'streamlined Sly Pack')]")).getText(), "carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.\n");
-        Assert.assertEquals(driver.findElement(By.xpath("//div[contains(@class, 'price')]")).getText(), "$9.99");
+        Assert.assertEquals(driver.findElement(By.xpath("//div[contains(text(), 'Sly Pack')]")).getText(), "carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.");
+        Assert.assertEquals(driver.findElement(By.xpath("//div[contains(@class, 'price')]")).getText(), "$29.99");
         Assert.assertTrue(driver.findElement(By.xpath("//div/descendant::img[@class='bm-icon']")).isDisplayed());
     }
 
-    @Test(testName = "Add item to shopping cart")
+    @Test(testName = "Add and remove item from shopping cart")
     public void addToCartTest() {
         driver.findElement(By.cssSelector("[name='add-to-cart-sauce-labs-backpack']")).click();
-        driver.findElement(By.cssSelector("[id*='cart_cont']")).click();
         Assert.assertEquals(driver.findElement(By.cssSelector("[class$='cart_badge']")).getText(), "1");
-        Assert.assertTrue(driver.findElement(By.cssSelector("[name|='remove']")).isDisplayed());
+        driver.findElement(By.cssSelector("[id*='cart_cont']")).click();
         Assert.assertTrue(driver.findElement(By.cssSelector("[id^='item_4_title']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("[name|='remove']")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.cssSelector("[class~='checkout_button']")).isDisplayed());
     }
 
@@ -75,6 +83,14 @@ public class LocatorsSauceDemoTest {
     @Test(testName = "Social links")
     public void footerLinksTest() {
         Assert.assertTrue(driver.findElement(By.xpath("//a/ancestor::ul")).isDisplayed());
+    }
+
+    @Test(testName = "Logout")
+    public void logoutTest() throws InterruptedException {
+        driver.findElement(By.cssSelector("#react-burger-menu-btn")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//a[@id='about_sidebar_link']//following::a")).click();
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/");
     }
 
     @AfterMethod()
