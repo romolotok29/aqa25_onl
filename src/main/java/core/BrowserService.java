@@ -33,7 +33,7 @@ public class BrowserService {
 
     public WebDriver getDriver() {
         driver.manage().deleteAllCookies();
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
         return driver;
     }
 
