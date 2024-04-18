@@ -24,11 +24,4 @@ public class ReadProperties {
         return Integer.parseInt(properties.getProperty("timeout"));
     }
 
-    public static String getDownloadPath() {
-        return ReadProperties.class.getClassLoader().getResource(properties.getProperty("downloadDir")).getPath();
-    }
-
-    public static boolean isHeadless() {
-        return properties.getProperty("headless").equalsIgnoreCase("true");
-    }
 }
