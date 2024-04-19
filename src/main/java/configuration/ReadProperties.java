@@ -1,6 +1,7 @@
 package configuration;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Properties;
 
 public class ReadProperties {
@@ -16,20 +17,16 @@ public class ReadProperties {
         }
     }
 
-    public static String getUrl(){
-        return properties.getProperty("url");
-    }
-
     public static String browserName() {
         return properties.getProperty("browser");
     }
 
-    public static String getUserName(){
-        return properties.getProperty("username");
+    public static int getTimeout() {
+        return Integer.parseInt(properties.getProperty("timeout"));
     }
 
-    public static String getPassword(){
-        return properties.getProperty("password");
+    public static String getDownloadPath() {
+        return ReadProperties.class.getClassLoader().getResource(properties.getProperty("downloadPath")).getPath();
     }
 
     public static boolean isHeadless() {
