@@ -23,7 +23,7 @@ public class EndToEndTest extends BaseTest {
         Assert.assertTrue(new ProductsPage(driver).isPageOpened());
 
         ProductSteps productSteps = new ProductSteps(driver);
-        productSteps.addToCart(1);
+        productSteps.addToCart(3);
         navigationSteps.moveToShoppingCart();
 
         Assert.assertTrue(new ShoppingCartPage(driver).isPageOpened());

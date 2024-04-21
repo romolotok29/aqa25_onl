@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 public class CheckoutOverviewPage extends BasePage {
 
-    private final By finishButtonLocator = By.cssSelector("#finish");
+    private final By finishButtonLocator = By.xpath("//button[@id='finish']");
 
     public CheckoutOverviewPage(WebDriver driver) {
         super(driver);

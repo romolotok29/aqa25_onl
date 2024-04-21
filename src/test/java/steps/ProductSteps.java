@@ -15,7 +15,7 @@ public class ProductSteps extends BaseSteps {
     }
 
     public void addToCart(int productPosition) {
-        productsPage.getAddButtonOfSingleItem(productPosition).click();
+        productsPage.getAddToCartButton(productPosition).click();
 
     }
 }

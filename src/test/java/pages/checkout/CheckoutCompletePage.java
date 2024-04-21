@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 public class CheckoutCompletePage extends BasePage {
 
-    private final By completeTitleLocator = By.cssSelector(".title");
+    private final By completeTitleLocator = By.xpath("//span[text()='Checkout: Complete!']");
     private final By completeHeaderLocator = By.cssSelector(".complete-header");
     private final By completeMessageLocator = By.cssSelector(".complete-text");
     private final By backButtonLocator = By.cssSelector("#back-to-products");

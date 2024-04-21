@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ProductsPage extends BasePage {
     private final By productItemLocator = By.cssSelector(".inventory_item");
-    private final By addButtonLocator = By.cssSelector(".btn_inventory");
+    private final By addToCartButtonLocator = By.cssSelector(".btn_inventory");
     private final By cartButtonLocator = By.cssSelector("#shopping_cart_container");
     private final int amountOfItemsOnPage = 6;
 
@@ -31,8 +31,8 @@ public class ProductsPage extends BasePage {
         return waitsService.waitForAllVisibleElementsLocatedBy(productItemLocator);
     }
 
-    public WebElement getAddButtonOfSingleItem(int index) {
-        return waitsService.waitForAllVisibleElementsLocatedBy(addButtonLocator).get(index);
+    public WebElement getAddToCartButton(int index) {
+        return waitsService.waitForAllVisibleElementsLocatedBy(addToCartButtonLocator).get(index);
     }
 
     public WebElement getCartButton() {
