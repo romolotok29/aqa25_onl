@@ -7,11 +7,15 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
 
+    private final static String pagePath = "";
+
     //Блок описания локаторов
 
-    private final By usernameInputLocator = By.xpath("//input[@id = 'user-name']");
+    private final By emailInputLocator = By.xpath("//input[@id='name']");
     private final By passwordInputLocator = By.xpath("//input[@id = 'password']");
-    private final By loginButtonLocator = By.xpath("//input[@id = 'login-button']");
+    private final By loginButtonLocator = By.xpath("//button[@id = 'button_primary']");
+
+    private final By errorTextLabelLocator = By.xpath("//div[@class='error-text']");
 
     //Блок инициализации
 
@@ -19,27 +23,66 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    @Override
-    protected By getPageIdentifier() {
-        return usernameInputLocator;
-    }
-
     //Блок атомарных методов
 
-    public WebElement getUsernameInput() {
-        return waitsService.waitForVisibility(usernameInputLocator);
+    @Override
+    protected By getPageIdentifier() {
+        return emailInputLocator;
+    }
+
+    @Override
+    protected String getPagePath() {
+        return pagePath;
+    }
+
+    public WebElement getEmailInput() {
+        return waitsService.waitForVisibility(emailInputLocator);
+    }
+
+    public LoginPage setEmail(String value) {
+        getEmailInput().sendKeys(value);
+        return this;
     }
 
     public WebElement getPasswordInput() {
         return waitsService.waitForVisibility(passwordInputLocator);
     }
 
+    public LoginPage setPassword(String value) {
+        getPasswordInput().sendKeys(value);
+        return this;
+    }
+
     public WebElement getLoginButton() {
         return waitsService.waitForVisibility(loginButtonLocator);
+    }
+
+    public WebElement getErrorTextLabel() {
+        return waitsService.waitForVisibility(errorTextLabelLocator);
+    }
+
+    public String getErrorText() {
+        return getErrorTextLabel().getText();
     }
 
     public void clickLoginButton() {
         getLoginButton().click();
     }
 
+    public void login(String email, String password) {
+        setEmail(email)
+                .setPassword(password)
+                        .clickLoginButton();
+    }
+
+    public DashboardPage successfulLogin(String email, String password) {
+        login(email, password);
+        return new DashboardPage(driver, true);
+    }
+
+    public LoginPage incorrectLogin(String email, String password) {
+        login(email, password);
+        return this;
+
+    }
 }

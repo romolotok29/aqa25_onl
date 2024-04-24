@@ -10,17 +10,27 @@ public abstract class BasePage {
     protected WaitsService waitsService;
 
     public BasePage(WebDriver driver) {
+        this(driver, false);
+    }
+
+    public BasePage(WebDriver driver, boolean openPageByUrl) {
         this.driver = driver;
         this.waitsService = new WaitsService(driver);
+
+        if (openPageByUrl) {
+            openPageByUrl();
+        }
     }
 
     protected abstract By getPageIdentifier();
+    protected abstract String getPagePath();
+
 
     public Boolean isPageOpened() {
         return driver.findElement(getPageIdentifier()).isDisplayed();
     }
 
-    public String getPageUrl(){
-        return ReadProperties.url();
+    public String openPageByUrl(){
+        return ReadProperties.url() + getPagePath();
     }
 }
