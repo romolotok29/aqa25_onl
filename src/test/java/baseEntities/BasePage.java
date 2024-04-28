@@ -13,6 +13,8 @@ public abstract class BasePage {
         this(driver, false);
     }
 
+    //Дополнительный конструктор
+
     public BasePage(WebDriver driver, boolean openPageByUrl) {
         this.driver = driver;
         this.waitsService = new WaitsService(driver);
@@ -34,3 +36,4 @@ public abstract class BasePage {
         return ReadProperties.url() + getPagePath();
     }
 }
+

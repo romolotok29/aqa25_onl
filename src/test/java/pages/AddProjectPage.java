@@ -1,26 +1,17 @@
 package pages;
 
-import baseEntities.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class AddProjectPage extends BasePage {
+public class AddProjectPage extends ProjectsBasePage {
 
     private final static String pagePath = "index.php?/admin/projects/add/1";
-
-    private final By projectNameInputLocator = By.xpath("//input[@id='name']");
-
-    private final By announcementTextInputLocator = By.cssSelector(".form-control-full");
-
-    private final By showAnnouncementCheckboxLocator = By.cssSelector("#show_announcement");
-
-    private final By singleTestSuiteWithBaselineSupportLocator = By.xpath
-            ("//strong[text()='Use a single repository with baseline support']");
-
-    private final By enableTestCaseApprovalsLocator = By.xpath("//*[text()='Enable Test Case Approvals']");
-
     private final By addProjectButtonLocator = By.id("accept");
+
+    public AddProjectPage(WebDriver driver) {
+        this(driver, false);
+    }
 
     public AddProjectPage(WebDriver driver, boolean openPageByUrl) {
         super(driver, openPageByUrl);
@@ -28,32 +19,12 @@ public class AddProjectPage extends BasePage {
 
     @Override
     protected By getPageIdentifier() {
-        return projectNameInputLocator;
+        return addProjectButtonLocator;
     }
 
     @Override
     protected String getPagePath() {
         return pagePath;
-    }
-
-    public WebElement getProjectName() {
-        return waitsService.waitForVisibility(projectNameInputLocator);
-    }
-
-    public WebElement getAnnouncementTextInput() {
-        return waitsService.waitForVisibility(announcementTextInputLocator);
-    }
-
-    public WebElement getAnnouncementCheckbox() {
-        return waitsService.waitForVisibility(showAnnouncementCheckboxLocator);
-    }
-
-    public WebElement getTestSuiteType() {
-        return waitsService.waitForVisibility(singleTestSuiteWithBaselineSupportLocator);
-    }
-
-    public WebElement getTestCaseApprovalsCheckbox() {
-        return waitsService.waitForVisibility(enableTestCaseApprovalsLocator);
     }
 
     public WebElement getAddProjectButton() {
@@ -65,42 +36,37 @@ public class AddProjectPage extends BasePage {
         return this;
     }
 
-    public AddProjectPage setAnnouncementTextInput(String text) {
-        getAnnouncementTextInput().sendKeys(text);
+    public AddProjectPage setAnnouncementText(String value) {
+        getAnnouncementTextInput().sendKeys(value);
         return this;
     }
 
-    public AddProjectPage setAnnouncementCheckbox() {
-        getAnnouncementCheckbox().click();
+    public AddProjectPage setShowAnnouncementCheckbox(boolean value) {
+        if(value) {
+            getAnnouncementCheckbox().click();
+        }
         return this;
     }
 
-    public AddProjectPage setTestSuiteType() {
-        getTestSuiteType().click();
+    public AddProjectPage setTestSuiteType(int value) {
+        if (value == 1) {
+            getSingleTestSuiteWithAllCases().click();
+        } else if (value ==2) {
+            getSingleTestSuiteWithBaselineSupport().click();
+        } else if (value == 3) {
+            getMultipleTestSuites().click();
+        }
         return this;
     }
 
-    public AddProjectPage setTestCaseApprovalsCheckbox() {
-        getTestCaseApprovalsCheckbox().click();
+    public AddProjectPage setEnableTestCaseApprovalsCheckbox(boolean value) {
+        if (value) {
+            getTestCaseApprovalsCheckbox().click();
+        }
         return this;
     }
 
     public void clickAddProjectButton() {
         getAddProjectButton().click();
-    }
-
-    public void addProject(String projectName, String text) {
-        this
-                .setProjectName(projectName)
-                .setAnnouncementTextInput(text)
-                .setAnnouncementCheckbox()
-                .setTestSuiteType()
-                .setTestCaseApprovalsCheckbox()
-                .clickAddProjectButton();
-    }
-
-    public ProjectsOverviewPage successfulAddProject(String projectName, String text) {
-        addProject(projectName, text);
-        return new ProjectsOverviewPage(driver, true);
     }
 }

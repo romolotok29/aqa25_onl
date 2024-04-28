@@ -20,7 +20,7 @@ public class ReadProperties {
         return properties.getProperty("url");
     }
 
-    public static String browserName() {
+    public static String browser() {
         return properties.getProperty("browser");
     }
 

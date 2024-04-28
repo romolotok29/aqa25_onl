@@ -1,37 +1,41 @@
 package steps;
 
 import baseEntities.BaseSteps;
+import models.User;
 import org.openqa.selenium.WebDriver;
-import pages.ShoppingCartPage;
+import pages.DashboardPage;
 import pages.LoginPage;
-import pages.ProductsPage;
 
 public class NavigationSteps extends BaseSteps {
 
     private LoginPage loginPage;
-
-    private ProductsPage productsPage;
-    private ShoppingCartPage shoppingCartPage;
+    private DashboardPage dashboardPage;
 
     public NavigationSteps(WebDriver driver) {
         super(driver);
-    }
 
-    public void login(String username, String password) {
         loginPage = new LoginPage(driver);
-        loginPage.getUsernameInput().sendKeys(username);
-        loginPage.getPasswordInput().sendKeys(password);
-        loginPage.clickLoginButton();
+        dashboardPage = new DashboardPage(driver);
     }
 
-    public void moveToShoppingCart() {
-        productsPage = new ProductsPage(driver);
-        productsPage.getCartButton().click();
+    private void login(String email, String password) {
+        loginPage
+                .setEmail(email)
+                .setPassword(password)
+                .clickLoginButton();
     }
 
-    public void moveToCheckout() {
-        shoppingCartPage = new ShoppingCartPage(driver);
-        shoppingCartPage.getCheckoutButton().click();
+    public DashboardPage successfulLogin(String email, String password) {
+        login(email, password);
+        return dashboardPage;
+    }
 
+    public DashboardPage successfulLogin(User user) {
+        return successfulLogin(user.getEmail(), user.getPassword());
+    }
+
+    public LoginPage incorrectLogin(String email, String password) {
+        login(email, password);
+        return loginPage;
     }
 }

@@ -35,3 +35,4 @@ public class WaitsService {
         return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
 }
+//

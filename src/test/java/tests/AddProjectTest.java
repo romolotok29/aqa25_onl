@@ -3,31 +3,41 @@ package tests;
 import baseEntities.BaseTest;
 import configuration.ReadProperties;
 import data.StaticProvider;
+import models.Project;
+import models.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.DashboardPage;
-import pages.LoginPage;
 import pages.ProjectsOverviewPage;
+import steps.NavigationSteps;
+import steps.ProjectSteps;
 
 public class AddProjectTest extends BaseTest {
 
-    @Test(dataProvider = "projectName", dataProviderClass = StaticProvider.class)
+    @Test(dataProvider = "project", dataProviderClass = StaticProvider.class)
     public void successfulAddProjectTest(String projectName) {
 
-        LoginPage loginPage = new LoginPage(driver);
+        NavigationSteps navigationSteps = new NavigationSteps(driver);
 
-        Assert.assertTrue(
-                loginPage
-                        .successfulLogin(ReadProperties.email(), ReadProperties.password())
-                        .isPageOpened()
-        );
+        User user = new User();
+        user.setEmail(ReadProperties.email());
+        user.setPassword(ReadProperties.password());
 
-        DashboardPage dashboardPage = new DashboardPage(driver, true);
+        Project expectedProject = new Project();
+        expectedProject.setName("Testing with ValueOfObjects");
+        expectedProject.setAnnouncementText("Some announcement text");
+        expectedProject.setAnnouncementCheckbox(true);
+        expectedProject.setTestSuiteType(1);
+        expectedProject.setEnableTCApprovals(false);
+
+        navigationSteps
+                .successfulLogin(user)
+                .addProject();
+
+        ProjectSteps projectSteps = new ProjectSteps(driver);
 
         Assert.assertEquals(
-                dashboardPage
-                        .addProject()
-                        .successfulAddProject("Testing with ChainOfInvocations", "Announcement text")
+                projectSteps
+                        .successfulAddProject(expectedProject)
                         .getSuccessfulMessageText(), "Successfully added the new project."
         );
 
@@ -35,7 +45,6 @@ public class AddProjectTest extends BaseTest {
 
         Assert.assertTrue(
                 projectsOverviewPage
-                        .goToProjectByName(projectName)
                         .isProjectInList(projectName)
         );
     }

@@ -21,21 +21,18 @@ public class ProjectsOverviewPage extends BasePage {
     protected By getPageIdentifier() {
         return successfulNewProjectMessageLocator;
     }
+
     @Override
     protected String getPagePath() {
         return pagePath;
     }
 
     public WebElement getSuccessfulMessageLabel() {
-        return  waitsService.waitForVisibility(successfulNewProjectMessageLocator);
+        return waitsService.waitForVisibility(successfulNewProjectMessageLocator);
     }
 
     public String getSuccessfulMessageText() {
         return getSuccessfulMessageLabel().getText();
-    }
-
-    public ProjectsOverviewPage goToProjectByName(String name){
-        return this;
     }
 
     public boolean isProjectInList(String name){
