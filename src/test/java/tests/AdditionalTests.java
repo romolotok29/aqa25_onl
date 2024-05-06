@@ -1,13 +1,20 @@
 package tests;
 
 import baseEntities.BaseTest;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
+@Epic("Additional Tests")
+@Feature("Additional Feature")
 public class AdditionalTests extends BaseTest {
 
-    @Test
+    @Test(description = "Тест на проверку неправильного логина")
+    @Description("Проверяем логин с некорректными кредами")
+    @Severity(SeverityLevel.TRIVIAL)
+    @Link(name = "allure link", type = "myLink", url = "https://example.org")
+    @Story("Test Story")
     public void incorrectLoginTest() {
         LoginPage loginPage = new LoginPage(driver);
 
@@ -20,7 +27,10 @@ public class AdditionalTests extends BaseTest {
                 "Epic sadface: Username and password do not match any user in this service");
     }
 
-    @Test
+    @Test(description = "Тест на проверку заблокированного пользователя")
+    @Description("Проверяем логин с заблокированным пользователем")
+    @Severity(SeverityLevel.NORMAL)
+    @Issue("BUG-123")
     public void loginAsLockedUserTest() {
         LoginPage loginPage = new LoginPage(driver);
 
@@ -34,7 +44,10 @@ public class AdditionalTests extends BaseTest {
     }
 
 
-    @Test
+    @Test(description = "Тест на проверку скриншота")
+    @Description("Специально падающий тест")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink("TMS-123")
     public void addSingleItemToCartTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -44,7 +57,7 @@ public class AdditionalTests extends BaseTest {
                         .successfulLogin(simpleUser)
                         .moveToSingleProductPage(product)
                         .addItemToCart()
-                        .getAmountOfItemsInCart(), 1
+                        .getAmountOfItemsInCart(), 2
         );
     }
 }

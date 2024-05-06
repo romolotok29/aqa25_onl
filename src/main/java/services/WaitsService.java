@@ -18,3 +18,4 @@ public class WaitsService {
         this.wait = new WebDriverWait(driver, this.timeout);
     }
 }
+

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Main Suite">
-    <test name="Smoke" parallel="classes" thread-count="2">
+<suite name="High Priority Suite">
+    <test name="Smoke" parallel="methods" thread-count="2">
         <classes>
             <class name="tests.EndToEndTest">
                 <methods>
@@ -11,7 +11,7 @@
             <class name="tests.AdditionalTests">
                 <methods>
                     <include name="incorrectLoginTest"/>
-                    <include name="addSingleItemToCartTest"/>
+                    <include name="loginAsLockedUserTest"/>
                 </methods>
             </class>
         </classes>

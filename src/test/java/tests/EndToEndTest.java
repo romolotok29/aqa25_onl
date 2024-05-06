@@ -1,15 +1,20 @@
 package tests;
 
 import baseEntities.BaseTest;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.checkout.CheckoutCompletePage;
 
-public class
-EndToEndTest extends BaseTest {
+@Epic("Main functionality") //влияет только на вкладку Behaviors в Allure Report
+@Feature("Main feature") //влияет только на вкладку Behaviors в Allure Report
+public class EndToEndTest extends BaseTest {
 
-    @Test(testName = "E2E login, add to cart and checkout")
+    @Test(description = "E2E тест-сценарий")
+    @Description("Проверка основного функционала на сайте https://www.saucedemo.com/")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Test Story") //влияет только на вкладку Behaviors в Allure Report
     public void e2eTest() {
         LoginPage loginPage = new LoginPage(driver);
 
@@ -18,8 +23,8 @@ EndToEndTest extends BaseTest {
                 .moveToSingleProductPage(product)
                 .addItemToCart()
                 .moveToShoppingCart()
-                .moveToCheckout().
-                fillCheckoutInfo(simpleUser)
+                .moveToCheckout()
+                .fillCheckoutInfo(simpleUser)
                 .finishCheckout();
 
         CheckoutCompletePage checkoutCompletePage = new CheckoutCompletePage(driver);
