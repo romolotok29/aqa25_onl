@@ -1,13 +1,12 @@
 package pages.checkout;
 
 import baseEntities.BasePage;
-import models.User;
+import models.UserBuilder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CheckoutInfoPage extends BasePage {
-
     private static final String pagePath = "checkout-step-one.html";
     @FindBy(id = "first-name")
     public WebElement firstNameInput;
@@ -32,11 +31,12 @@ public class CheckoutInfoPage extends BasePage {
         return pagePath;
     }
 
-    public CheckoutOverviewPage fillCheckoutInfo(User user) {
+    public CheckoutOverviewPage fillCheckoutInfo(UserBuilder user) {
         firstNameInput.sendKeys(user.getFirstName());
         lastNameInput.sendKeys(user.getLastName());
         postalCodeInput.sendKeys(user.getPostalCode());
         continueButton.click();
+        logger.info("Checkout overview is started");
 
         return new CheckoutOverviewPage(driver);
     }

@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CheckoutOverviewPage extends BasePage {
-
     private static final String pagePath = "checkout-step-two.html";
     @FindBy(id = "finish")
     public WebElement finishButton;
@@ -27,6 +26,8 @@ public class CheckoutOverviewPage extends BasePage {
 
     public CheckoutCompletePage finishCheckout() {
         finishButton.click();
+        logger.info("Moving to CheckoutCompletePage");
+
         return new CheckoutCompletePage(driver);
     }
 }

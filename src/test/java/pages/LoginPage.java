@@ -1,14 +1,13 @@
 package pages;
 
 import baseEntities.BasePage;
-import models.User;
+import models.UserBuilder;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.products.ProductsPage;
 
 public class LoginPage extends BasePage {
-
     private static final String pagePath = "";
     @FindBy(id = "user-name")
     public WebElement usernameInput;
@@ -50,10 +49,11 @@ public class LoginPage extends BasePage {
         loginButton.click();
     }
 
-    public ProductsPage successfulLogin(User user) {
+    public ProductsPage successfulLogin(UserBuilder user) {
         enterUsername(user.getUsername());
         enterPassword(user.getPassword());
         clickLoginButton();
+        logger.info("log in as user : "+ user.getUsername());
 
         return new ProductsPage(driver);
     }

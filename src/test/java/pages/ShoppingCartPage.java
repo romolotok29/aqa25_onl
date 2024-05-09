@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import pages.checkout.CheckoutInfoPage;
 
 public class ShoppingCartPage extends BasePage {
-
     private static final String pagePath = "cart.html";
     @FindBy(id = "checkout")
     public WebElement checkoutButton;
@@ -28,6 +27,7 @@ public class ShoppingCartPage extends BasePage {
 
     public CheckoutInfoPage moveToCheckout() {
         checkoutButton.click();
+        logger.info("Start checkout");
         return new CheckoutInfoPage(driver);
     }
 }

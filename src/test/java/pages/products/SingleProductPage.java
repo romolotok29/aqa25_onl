@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import pages.ShoppingCartPage;
 
 public class SingleProductPage extends BasePage {
-
     private static final String pagePath = "inventory-item.html?id=";
     @FindBy(id = "add-to-cart")
     public WebElement addToCartButton;
@@ -31,12 +30,15 @@ public class SingleProductPage extends BasePage {
 
     public SingleProductPage addItemToCart() {
         addToCartButton.click();
+        logger.info("Product added to cart");
+
         return this;
     }
 
-
     public ShoppingCartPage moveToShoppingCart() {
         shoppingCartButton.click();
+        logger.info("Moving to shopping cart");
+
         return new ShoppingCartPage(driver);
     }
 

@@ -1,6 +1,8 @@
 package baseEntities;
 
 import configuration.ReadProperties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +11,9 @@ import services.WaitsService;
 
 public abstract class BasePage {
 
+    protected Logger logger = LogManager.getLogger(BasePage.class);
     protected static final int WAIT_FOR_PAGE_LOADED_IN_SECONDS = 30;
+
     protected WebDriver driver;
     protected WaitsService waitsService;
 

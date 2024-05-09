@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CheckoutCompletePage extends BasePage {
-
     private static final String pagePath = "checkout-complete.html";
     @FindBy(css = ".title")
     public WebElement completeTitle;
@@ -17,6 +16,8 @@ public class CheckoutCompletePage extends BasePage {
 
     public CheckoutCompletePage(WebDriver driver) {
         super(driver, false);
+
+        logger.info("Checkout completed!");
     }
 
     @Override
