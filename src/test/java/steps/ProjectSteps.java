@@ -3,19 +3,19 @@ package steps;
 import baseEntities.BaseSteps;
 import models.Project;
 import org.openqa.selenium.WebDriver;
-import pages.AddProjectPage;
-import pages.ProjectsOverviewPage;
+import pages.projects.AddProjectPage;
+import pages.projects.AdminProjectsOverviewPage;
 
 public class ProjectSteps extends BaseSteps {
 
     private AddProjectPage addProjectPage;
-    private ProjectsOverviewPage projectsOverviewPage;
+    private AdminProjectsOverviewPage adminProjectsOverviewPage;
 
     public ProjectSteps(WebDriver driver) {
         super(driver);
 
         addProjectPage = new AddProjectPage(driver);
-        projectsOverviewPage = new ProjectsOverviewPage(driver, true);
+        adminProjectsOverviewPage = new AdminProjectsOverviewPage(driver, true);
     }
 
     public void addProject(Project project) {
@@ -23,13 +23,13 @@ public class ProjectSteps extends BaseSteps {
         addProjectPage.setProjectName(project.getName());
         addProjectPage.setAnnouncementText(project.getAnnouncementText());
         addProjectPage.setShowAnnouncementCheckbox(project.getAnnouncementCheckbox());
-        addProjectPage.setTestSuiteType(project.getTestSuiteType());
-        addProjectPage.setEnableTestCaseApprovalsCheckbox(project.getEnableTCApprovals());
+        addProjectPage.setProjectType(1);
+        addProjectPage.setTestCaseApprovalsCheckbox(project.getEnableTCApprovals());
         addProjectPage.clickAddProjectButton();
     }
 
-    public ProjectsOverviewPage successfulAddProject(Project project) {
+    public AdminProjectsOverviewPage successfulAddProject(Project project) {
         addProject(project);
-        return projectsOverviewPage;
+        return adminProjectsOverviewPage;
     }
 }

@@ -33,9 +33,4 @@ public class NavigationSteps extends BaseSteps {
     public DashboardPage successfulLogin(User user) {
         return successfulLogin(user.getEmail(), user.getPassword());
     }
-
-    public LoginPage incorrectLogin(String email, String password) {
-        login(email, password);
-        return loginPage;
-    }
 }

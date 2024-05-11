@@ -13,37 +13,28 @@ public class Project {
     public String getName() {
         return name;
     }
+    public String getAnnouncementText() {
+        return announcementText;
+    }
+    public boolean getAnnouncementCheckbox() {
+        return announcementCheckbox;
+    }
+    public int getTestSuiteType() { return testSuiteType; }
+    public boolean getEnableTCApprovals() {
+        return enableTCApprovals;
+    }
 
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getAnnouncementText() {
-        return announcementText;
-    }
-
     public void setAnnouncementText(String announcementText) {
         this.announcementText = announcementText;
     }
-
-    public boolean getAnnouncementCheckbox() {
-        return announcementCheckbox;
-    }
-
     public void setAnnouncementCheckbox(boolean announcementCheckbox) {
         this.announcementCheckbox = announcementCheckbox;
     }
-
-    public int getTestSuiteType() {
-        return testSuiteType;
-    }
-
     public void setTestSuiteType(int testSuiteType) {
         this.testSuiteType = testSuiteType;
-    }
-
-    public boolean getEnableTCApprovals() {
-        return enableTCApprovals;
     }
 
     public void setEnableTCApprovals(boolean enableTCApprovals) {

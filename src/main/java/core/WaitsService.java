@@ -27,6 +27,10 @@ public class WaitsService {
         wait = new WebDriverWait(driver, timeout);
     }
 
+    public WebElement waitForExists(By locator) {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
     public WebElement waitForVisibility(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
@@ -34,5 +38,8 @@ public class WaitsService {
     public List <WebElement> waitForAllVisibleElementsLocatedBy(By locator) {
         return wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
     }
+
+    public List <WebElement> waitForAllElementsLocatedBy(By locator) {
+        return wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+    }
 }
-//

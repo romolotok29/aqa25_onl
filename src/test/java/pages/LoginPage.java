@@ -1,9 +1,11 @@
 package pages;
 
 import baseEntities.BasePage;
+import elements.Button;
+import elements.Input;
+import elements.UIElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
 
@@ -14,29 +16,29 @@ public class LoginPage extends BasePage {
     private final By emailInputLocator = By.xpath("//input[@id='name']");
     private final By passwordInputLocator = By.xpath("//input[@id = 'password']");
     private final By loginButtonLocator = By.xpath("//button[@id = 'button_primary']");
-
     private final By errorTextLabelLocator = By.xpath("//div[@class='error-text']");
 
     //Блок инициализации
-
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     //Блок атомарных методов
-
     @Override
     protected By getPageIdentifier() {
         return emailInputLocator;
     }
-
     @Override
     protected String getPagePath() {
         return pagePath;
     }
 
-    public WebElement getEmailInput() {
-        return waitsService.waitForVisibility(emailInputLocator);
+    public Input getEmailInput() {
+        return new Input(driver, emailInputLocator);
+    }
+
+    public Input getPasswordInput() {
+        return new Input(driver, passwordInputLocator);
     }
 
     public LoginPage setEmail(String value) {
@@ -44,21 +46,17 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public WebElement getPasswordInput() {
-        return waitsService.waitForVisibility(passwordInputLocator);
-    }
-
     public LoginPage setPassword(String value) {
         getPasswordInput().sendKeys(value);
         return this;
     }
 
-    public WebElement getLoginButton() {
-        return waitsService.waitForVisibility(loginButtonLocator);
+    public Button getLoginButton() {
+        return new Button(driver, loginButtonLocator);
     }
 
-    public WebElement getErrorTextLabel() {
-        return waitsService.waitForVisibility(errorTextLabelLocator);
+    public UIElement getErrorTextLabel() {
+        return new UIElement(driver, errorTextLabelLocator);
     }
 
     public String getErrorText() {
@@ -68,5 +66,4 @@ public class LoginPage extends BasePage {
     public void clickLoginButton() {
         getLoginButton().click();
     }
-
 }
