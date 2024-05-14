@@ -22,8 +22,8 @@ public class ReadProperties {
 
     public static String browser() { return properties.getProperty("browser"); }
 
-    public static String email() {
-        return properties.getProperty("email");
+    public static String username() {
+        return properties.getProperty("username");
     }
 
     public static String password() {
@@ -36,6 +36,10 @@ public class ReadProperties {
 
     public static int pageLoadTimeout() {
         return Integer.parseInt(properties.getProperty("pageLoadTimeout"));
+    }
+
+    public static boolean headless() {
+        return properties.getProperty("headless").equalsIgnoreCase("true");
     }
 
 }
