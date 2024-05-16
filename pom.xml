@@ -72,7 +72,6 @@
                     </argLine>
                     <suiteXmlFiles>
                         <suiteXmlFile>target/test-classes/high-priority-parallel.xml</suiteXmlFile>
-                        <suiteXmlFile>target/test-classes/screenshot.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>
