@@ -35,5 +35,9 @@ public class ReadProperties {
     public static int getTimeout() {
         return Integer.parseInt(properties.getProperty("timeout"));
     }
+
+    public static boolean headless() {
+        return properties.getProperty("headless").equalsIgnoreCase("true");
+    }
 }
 
