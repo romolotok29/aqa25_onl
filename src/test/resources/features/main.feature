@@ -1,6 +1,13 @@
-Feature: Negative tests
+Feature: Parametrized tests
+
+  Background:
+    Given init browser
+    * open login page
+
+  Scenario: Log in with correct user credentials
+    When user "standard_user" with password "secret_sauce" log in
+    Then products page should be displayed
 
   Scenario: Log in with locked out user credentials
-    Given login page is opened
     When user "locked_out_user" with password "secret_sauce" log in
-    Then error with "message" should appear
+    Then an error message should appear

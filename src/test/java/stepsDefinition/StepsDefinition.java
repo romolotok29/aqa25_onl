@@ -1,18 +1,33 @@
 package stepsDefinition;
 
 import baseEntities.BaseTest;
+import configuration.ReadProperties;
+import io.cucumber.java.After;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.LoginPage;
+import pages.products.ProductsPage;
+import services.BrowserService;
 
 public class StepsDefinition extends BaseTest {
 
-    LoginPage loginPage = new LoginPage(driver);
+    WebDriver driver;
+    LoginPage loginPage;
+    ProductsPage productsPage;
 
-    @Given("login page is opened")
-    public void login_page_is_opened() {
+    @Given("init browser")
+    public void startBrowser() {
+        driver = new BrowserService().getDriver();
+    }
+
+    @And("open login page")
+    public void openLoginPage() {
+        driver.get(ReadProperties.getUrl());
+        loginPage = new LoginPage(driver);
         loginPage.isPageOpened();
     }
 
@@ -24,10 +39,21 @@ public class StepsDefinition extends BaseTest {
                 .clickLoginButton();
     }
 
-    @Then("error with {string} should appear")
-    public void error_with_should_appear(String message) {
-        message = loginPage.getErrorTextLockedOutUser();
-        Assert.assertEquals(message,
+    @Then("products page should be displayed")
+    public void isProductsPageDisplayed() {
+        productsPage = new ProductsPage(driver);
+        Assert.assertTrue(productsPage.isPageOpened());
+    }
+
+    @Then("an error message should appear")
+    public void anErrorMessageShouldAppear() {
+        Assert.assertEquals(loginPage.getErrorTextLockedOutUser(),
                 "Epic sadface: Sorry, this user has been locked out.");
     }
+
+    @After
+    public void tearDown() {
+        driver.quit();
+    }
+
 }

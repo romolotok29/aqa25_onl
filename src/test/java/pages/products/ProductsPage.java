@@ -13,6 +13,8 @@ public class ProductsPage extends BasePage {
     private static final String pagePath = "inventory.html";
     @FindBy(css = "[id*='_title_link']")
     public List<WebElement> productsList;
+    @FindBy(css = ".title")
+    public WebElement productsPageTitleLocator;
 
 
     public ProductsPage(WebDriver driver) {
@@ -21,8 +23,8 @@ public class ProductsPage extends BasePage {
 
     @Override
     protected WebElement getPageIdentifier() {
-        return productsList.get(3);
-    }
+        return productsPageTitleLocator;
+    } //productsList.get(3)
 
     @Override
     protected String getPagePath() {
