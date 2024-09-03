@@ -21,7 +21,6 @@ public class LoginPage extends BasePage {
     @FindBy(className = "error-message-container")
     public WebElement errorMessageLockedOut;
 
-
     public LoginPage(WebDriver driver) {
         super(driver, false);
     }
