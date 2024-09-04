@@ -13,11 +13,19 @@ public class ErrorSteps extends BaseTest {
         this.baseTest = baseTest;
     }
 
-    @Then("an error message for locked out user should appear")
+    @Then("an error message for locked out user should be displayed")
     public void anErrorMessageShouldAppear() {
         LoginPage loginPage = new LoginPage(baseTest.driver);
 
         Assert.assertEquals(loginPage.getErrorTextLockedOutUser(),
                 "Epic sadface: Sorry, this user has been locked out.");
+    }
+
+    @Then("an error message for unknown user should be displayed")
+    public void anErrorMessageForUnknownUserShouldBeDisplayed() {
+        LoginPage loginPage = new LoginPage(baseTest.driver);
+
+        Assert.assertEquals(loginPage.getErrorText(),
+                "Epic sadface: Username and password do not match any user in this service");
     }
 }

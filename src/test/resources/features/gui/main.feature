@@ -13,4 +13,8 @@ Feature: Parametrized tests
   @regression
   Scenario: Log in with locked out user credentials
     When user "locked_out_user" with password "secret_sauce" log in
-    Then an error message for locked out user should appear
+    Then an error message for locked out user should be displayed
+
+    Scenario: Log in with incorrect user credentials
+      When user "unknown_user" with password "unknown_password" log in
+      Then an error message for unknown user should be displayed
