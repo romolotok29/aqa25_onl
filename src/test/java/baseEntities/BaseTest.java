@@ -11,15 +11,13 @@ import services.BrowserService;
 import utils.InvokedListener;
 import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
 
-//@Listeners(Listener.class)
 @Listeners(InvokedListener.class)
 public class BaseTest {
 
-    protected WebDriver driver;
+    protected static WebDriver driver;
     protected User simpleUser;
     protected Product product;
 
-    //Почему-то не работает (По инструкции добавил зависимость в pom.xml и данный метод)
     @BeforeSuite
     void setAllureEnvironment() {
         allureEnvironmentWriter(ImmutableMap.<String, String>builder()
@@ -61,4 +59,5 @@ public class BaseTest {
     public static WebDriver getDriverFromContext(ITestContext iTestContext) {
         return (WebDriver) iTestContext.getAttribute("WebDriver");
     }
+
 }

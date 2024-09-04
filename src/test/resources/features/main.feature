@@ -10,4 +10,4 @@ Feature: Parametrized tests
 
   Scenario: Log in with locked out user credentials
     When user "locked_out_user" with password "secret_sauce" log in
-    Then an error message should appear
+    Then an error message for locked out user should appear

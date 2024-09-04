@@ -2,31 +2,32 @@ package stepsDefinition;
 
 import baseEntities.BaseTest;
 import configuration.ReadProperties;
-import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.LoginPage;
 import pages.products.ProductsPage;
-import services.BrowserService;
 
 public class StepsDefinition extends BaseTest {
 
-    WebDriver driver;
-    LoginPage loginPage;
-    ProductsPage productsPage;
+    private BaseTest baseTest;
+    private LoginPage loginPage;
+    private ProductsPage productsPage;
+
+    public StepsDefinition(BaseTest baseTest) {
+        this.baseTest = baseTest;
+    }
 
     @Given("init browser")
     public void startBrowser() {
-        driver = new BrowserService().getDriver();
+
     }
 
     @And("open login page")
     public void openLoginPage() {
-        driver.get(ReadProperties.getUrl());
+        baseTest.driver.get(ReadProperties.getUrl());
         loginPage = new LoginPage(driver);
         loginPage.isPageOpened();
     }
@@ -43,17 +44,6 @@ public class StepsDefinition extends BaseTest {
     public void isProductsPageDisplayed() {
         productsPage = new ProductsPage(driver);
         Assert.assertTrue(productsPage.isPageOpened());
-    }
-
-    @Then("an error message should appear")
-    public void anErrorMessageShouldAppear() {
-        Assert.assertEquals(loginPage.getErrorTextLockedOutUser(),
-                "Epic sadface: Sorry, this user has been locked out.");
-    }
-
-    @After
-    public void tearDown() {
-        driver.quit();
     }
 
 }
