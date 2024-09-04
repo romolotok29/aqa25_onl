@@ -1,4 +1,4 @@
-package stepsDefinition;
+package stepsDefinition.gui;
 
 import baseEntities.BaseTest;
 import io.cucumber.java.en.Then;

@@ -13,8 +13,6 @@ public class AdditionalTests extends BaseTest {
     @Test(description = "Тест на проверку неправильного логина")
     @Description("Проверяем логин с некорректными кредами")
     @Severity(SeverityLevel.TRIVIAL)
-    @Link(name = "allure link", type = "myLink", url = "https://example.org")
-    @Story("Test Story")
     public void incorrectLoginTest() {
         LoginPage loginPage = new LoginPage(driver);
 
@@ -30,7 +28,10 @@ public class AdditionalTests extends BaseTest {
     @Test(description = "Тест на проверку заблокированного пользователя")
     @Description("Проверяем логин с заблокированным пользователем")
     @Severity(SeverityLevel.NORMAL)
+    @TmsLink("TMS-123")
     @Issue("BUG-123")
+    @Link(name = "allure link", type = "myLink", url = "https://example.org")
+    @Story("Test Story")
     public void loginAsLockedUserTest() {
         LoginPage loginPage = new LoginPage(driver);
 
@@ -47,7 +48,6 @@ public class AdditionalTests extends BaseTest {
     @Test(description = "Тест на проверку скриншота")
     @Description("Специально падающий тест")
     @Severity(SeverityLevel.MINOR)
-    @TmsLink("TMS-123")
     public void addSingleItemToCartTest() {
 
         LoginPage loginPage = new LoginPage(driver);
@@ -60,4 +60,5 @@ public class AdditionalTests extends BaseTest {
                         .getAmountOfItemsInCart(), 2
         );
     }
+
 }

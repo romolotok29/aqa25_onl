@@ -15,6 +15,7 @@ import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnviro
 public class BaseTest {
 
     protected static WebDriver driver;
+    public static String service;
     protected User simpleUser;
     protected Product product;
 

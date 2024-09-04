@@ -1,4 +1,4 @@
-package stepsDefinition;
+package stepsDefinition.gui;
 
 import baseEntities.BaseTest;
 import configuration.ReadProperties;
@@ -10,13 +10,13 @@ import org.testng.Assert;
 import pages.LoginPage;
 import pages.products.ProductsPage;
 
-public class StepsDefinition extends BaseTest {
+public class GuiSteps extends BaseTest {
 
     private BaseTest baseTest;
     private LoginPage loginPage;
     private ProductsPage productsPage;
 
-    public StepsDefinition(BaseTest baseTest) {
+    public GuiSteps(BaseTest baseTest) {
         this.baseTest = baseTest;
     }
 
