@@ -5,19 +5,13 @@ import java.util.Objects;
 public class Product {
 
     private String productName;
-    private static String productId;
 
-    public Product(String productName, String productId) {
+    public Product(String productName) {
         this.productName = productName;
-        this.productId = productId;
     }
 
     public String getProductName() {
         return productName;
-    }
-
-    public static String getProductId() {
-        return productId;
     }
 
     @Override

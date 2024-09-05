@@ -9,14 +9,14 @@ import pages.ShoppingCartPage;
 
 public class SingleProductPage extends BasePage {
 
-    private static final String pagePath = "inventory-item.html?id=";
+    private static final String pagePath = "inventory-item.html?id=1";
     @FindBy(id = "add-to-cart")
     public WebElement addToCartButton;
     @FindBy(css = ".shopping_cart_link")
     public WebElement shoppingCartButton;
 
     public SingleProductPage(WebDriver driver) {
-        super(driver, true);
+        super(driver, false);
     }
 
     @Override
@@ -24,9 +24,11 @@ public class SingleProductPage extends BasePage {
         return addToCartButton;
     }
 
+
     @Override
     protected String getPagePath() {
-        return pagePath + Product.getProductId();
+        return pagePath;
+        //return pagePath + Product.getProductId();
     }
 
     public SingleProductPage addItemToCart() {

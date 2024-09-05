@@ -6,6 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import models.Product;
 import org.testng.Assert;
 import pages.LoginPage;
 import pages.products.ProductsPage;
@@ -48,9 +49,10 @@ public class GuiSteps extends BaseTest {
         Assert.assertTrue(productsPage.isPageOpened());
     }
 
-    @And("adds {string} to cart")
+    @And("clicks on any product")
     public void addsToCart(String productName) {
         productsPage = new ProductsPage(driver);
+        Product product = new Product(productName);
         productsPage.moveToSingleProductPage(product);
         singleProductPage.addItemToCart();
     }
@@ -62,4 +64,14 @@ public class GuiSteps extends BaseTest {
         System.out.println("Taking a screenshot");
     }
 
+    @And("clicks on product {string}")
+    public void clicksOnProduct(String productName) {
+        productsPage = new ProductsPage(driver);
+        Product product = new Product(productName);
+        productsPage.moveToSingleProductPage(product);
+        singleProductPage = new SingleProductPage(driver);
+        singleProductPage.addItemToCart();
+        Assert.assertEquals(singleProductPage.getAmountOfItemsInCart(), 2);
+
+    }
 }

@@ -22,5 +22,5 @@ Feature: Login tests
 
   Scenario: Specially falling test for screenshot feature
     When user "standard_user" with password "secret_sauce" log in
-    And adds "product" to cart
+    And clicks on product "Sauce Labs Bolt T-Shirt"
     Then test should fail and take a screenshot

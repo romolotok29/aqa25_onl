@@ -5,11 +5,8 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.qameta.allure.Allure;
-import models.Product;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
 import services.BrowserService;
 
 import java.io.ByteArrayInputStream;
@@ -25,7 +22,7 @@ public class Hook extends BaseTest {
     @Before()
     public void initGuiScenario() {
         baseTest.driver = new BrowserService().getDriver();
-        product = new Product("Sauce Labs Bolt T-Shirt", "1");
+        //product = new Product("Sauce Labs Bolt T-Shirt");
     }
 
     @After()

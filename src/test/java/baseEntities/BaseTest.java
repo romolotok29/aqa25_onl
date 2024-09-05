@@ -39,7 +39,7 @@ public class BaseTest {
                 .withPostalCode("102030")
                 .build();
 
-        product = new Product("Sauce Labs Bolt T-Shirt", "1");
+        //product = new Product("Sauce Labs Bolt T-Shirt");
     }
 
     /*
