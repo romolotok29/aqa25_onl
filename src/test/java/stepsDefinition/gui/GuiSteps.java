@@ -49,29 +49,19 @@ public class GuiSteps extends BaseTest {
         Assert.assertTrue(productsPage.isPageOpened());
     }
 
-    @And("clicks on any product")
-    public void addsToCart(String productName) {
-        productsPage = new ProductsPage(driver);
-        Product product = new Product(productName);
-        productsPage.moveToSingleProductPage(product);
-        singleProductPage.addItemToCart();
-    }
-
-    @Then("test should fail and take a screenshot")
-    public void testShouldFailAndTakeAScreenshot() {
-        singleProductPage = new SingleProductPage(driver);
-        Assert.assertEquals(singleProductPage.getAmountOfItemsInCart(), 2);
-        System.out.println("Taking a screenshot");
-    }
-
     @And("clicks on product {string}")
     public void clicksOnProduct(String productName) {
         productsPage = new ProductsPage(driver);
         Product product = new Product(productName);
         productsPage.moveToSingleProductPage(product);
+    }
+
+    @Then("test should fail and take a screenshot")
+    public void testShouldFailAndTakeAScreenshot() {
         singleProductPage = new SingleProductPage(driver);
         singleProductPage.addItemToCart();
         Assert.assertEquals(singleProductPage.getAmountOfItemsInCart(), 2);
-
+        System.out.println("Taking a screenshot");
     }
+
 }
