@@ -2,6 +2,7 @@ package baseEntities;
 
 import com.google.common.collect.ImmutableMap;
 import configuration.ReadProperties;
+import io.qameta.allure.testng.AllureTestNg;
 import models.Product;
 import models.User;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +21,7 @@ public class BaseTest {
     protected Product product;
     protected LoginPage loginPage;
 
+    /*
     @BeforeSuite
     void setAllureEnvironment() {
         allureEnvironmentWriter(ImmutableMap.<String, String>builder()
@@ -28,6 +30,8 @@ public class BaseTest {
                         .put("Stand", "Production")
                         .build());
     }
+
+     */
 
     @BeforeClass
     public void setUpData() {

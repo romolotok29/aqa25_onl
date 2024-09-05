@@ -1,16 +1,21 @@
 package stepsDefinition;
 
 import baseEntities.BaseTest;
+import com.google.common.collect.ImmutableMap;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.qameta.allure.Allure;
+import io.qameta.allure.testng.AllureTestNg;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.testng.annotations.Listeners;
 import services.BrowserService;
 
 import java.io.ByteArrayInputStream;
 
+import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
+@Listeners(AllureTestNg.class)
 public class Hook extends BaseTest {
 
     private BaseTest baseTest;
@@ -22,6 +27,13 @@ public class Hook extends BaseTest {
     @Before()
     public void initGuiScenario() {
         baseTest.driver = new BrowserService().getDriver();
+
+        allureEnvironmentWriter(ImmutableMap.<String, String>builder()
+                .put("Browser", "Chrome")
+                .put("Browser.Version", "123.0")
+                .put("Stand", "Production")
+                .build());
+
         //product = new Product("Sauce Labs Bolt T-Shirt");
     }
 
