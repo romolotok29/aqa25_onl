@@ -45,4 +45,5 @@ public class ProductsPage extends BasePage {
         getProductByName(product.getProductName()).click();
         return new SingleProductPage(driver);
     }
+
 }

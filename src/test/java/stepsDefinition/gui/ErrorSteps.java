@@ -14,7 +14,7 @@ public class ErrorSteps extends BaseTest {
     }
 
     @Then("an error message for locked out user should be displayed")
-    public void anErrorMessageShouldAppear() {
+    public void anErrorMessageForLockedOutUserShouldAppear() {
         LoginPage loginPage = new LoginPage(baseTest.driver);
 
         Assert.assertEquals(loginPage.getErrorTextLockedOutUser(),
@@ -27,5 +27,13 @@ public class ErrorSteps extends BaseTest {
 
         Assert.assertEquals(loginPage.getErrorText(),
                 "Epic sadface: Username and password do not match any user in this service");
+    }
+
+    @Then("expired login session error message should be displayed")
+    public void expiredLoginSessionErrorMessageShouldAppear() {
+        LoginPage loginPage = new LoginPage(baseTest.driver);
+
+        Assert.assertEquals(loginPage.getExpiredLoginSessionErrorText(),
+                "Epic sadface: You can only access '/inventory.html' when you are logged in.");
     }
 }

@@ -34,7 +34,6 @@ public class SingleProductPage extends BasePage {
         return this;
     }
 
-
     public ShoppingCartPage moveToShoppingCart() {
         shoppingCartButton.click();
         return new ShoppingCartPage(driver);

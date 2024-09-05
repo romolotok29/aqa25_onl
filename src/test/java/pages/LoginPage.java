@@ -20,6 +20,8 @@ public class LoginPage extends BasePage {
     public WebElement errorMessage;
     @FindBy(className = "error-message-container")
     public WebElement errorMessageLockedOut;
+    @FindBy(xpath = "//h3[@data-test='error']")
+    public WebElement expiredLoginSessionErrorMessage;
 
     public LoginPage(WebDriver driver) {
         super(driver, false);
@@ -65,11 +67,25 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    /*
+    public void ensureThatUserIsLoggedIn(User user) {
+        if (expiredLoginSessionErrorMessage.isDisplayed()) {
+            successfulLogin(user);
+        }
+        successfulLogin(user);
+    }
+
+     */
+
     public String getErrorText() {
         return errorMessage.getText();
     }
 
     public String getErrorTextLockedOutUser() {
         return errorMessageLockedOut.getText();
+    }
+
+    public String getExpiredLoginSessionErrorText() {
+        return expiredLoginSessionErrorMessage.getText();
     }
 }

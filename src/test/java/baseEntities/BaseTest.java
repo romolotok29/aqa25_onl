@@ -7,17 +7,18 @@ import models.User;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
-import services.BrowserService;
-import utils.InvokedListener;
+import pages.LoginPage;
+
 import static com.github.automatedowl.tools.AllureEnvironmentWriter.allureEnvironmentWriter;
 
-@Listeners(InvokedListener.class)
+//@Listeners(InvokedListener.class)
 public class BaseTest {
 
     protected static WebDriver driver;
     public static String service;
     protected User simpleUser;
     protected Product product;
+    protected LoginPage loginPage;
 
     @BeforeSuite
     void setAllureEnvironment() {
@@ -41,17 +42,14 @@ public class BaseTest {
         product = new Product("Sauce Labs Bolt T-Shirt", "1");
     }
 
+    /*
     @BeforeMethod
     public void setup(ITestContext iTestContext) {
         driver = new BrowserService().getDriver();
         this.setDriverToContext(iTestContext, driver);
         driver.get(ReadProperties.getUrl());
     }
-
-    @AfterMethod
-    public void quit() {
-        driver.quit();
-    }
+     */
 
     public static void setDriverToContext(ITestContext iTestContext, WebDriver driver) {
         iTestContext.setAttribute("WebDriver", driver);
