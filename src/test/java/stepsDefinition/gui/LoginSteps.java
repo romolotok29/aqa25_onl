@@ -12,14 +12,14 @@ import pages.LoginPage;
 import pages.products.ProductsPage;
 import pages.products.SingleProductPage;
 
-public class GuiSteps extends BaseTest {
+public class LoginSteps extends BaseTest {
 
     private BaseTest baseTest;
     private LoginPage loginPage;
     private ProductsPage productsPage;
     private SingleProductPage singleProductPage;
 
-    public GuiSteps(BaseTest baseTest) {
+    public LoginSteps(BaseTest baseTest) {
         this.baseTest = baseTest;
     }
 
@@ -49,7 +49,7 @@ public class GuiSteps extends BaseTest {
         Assert.assertTrue(productsPage.isPageOpened());
     }
 
-    @And("clicks on product {string}")
+    @And("clicks on product {string} and adds one item to cart")
     public void clicksOnProduct(String productName) {
         productsPage = new ProductsPage(driver);
         Product product = new Product(productName);

@@ -19,8 +19,3 @@ Feature: Login tests
   Scenario: Log in with locked out user credentials
     When user "locked_out_user" with password "secret_sauce" log in
     Then an error message for locked out user should be displayed
-
-  Scenario: Specially falling test for screenshot feature
-    When user "standard_user" with password "secret_sauce" log in
-    And clicks on product "Sauce Labs Bolt T-Shirt"
-    Then test should fail and take a screenshot

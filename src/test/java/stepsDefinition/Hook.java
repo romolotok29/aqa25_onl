@@ -30,8 +30,8 @@ public class Hook extends BaseTest {
 
         allureEnvironmentWriter(ImmutableMap.<String, String>builder()
                 .put("Browser", "Chrome")
-                .put("Browser.Version", "123.0")
-                .put("Stand", "Production")
+                .put("Browser.Version", "128.0.6613.120")
+                .put("Stand", "QA1")
                 .build());
 
         //product = new Product("Sauce Labs Bolt T-Shirt");
@@ -40,7 +40,7 @@ public class Hook extends BaseTest {
     @After()
     public void guiTearDown(Scenario scenario) {
         if (scenario.isFailed()) {
-            System.out.println("Сценарий провален: " + scenario.getName());
+            System.out.println("Scenario failed: " + scenario.getName());
             try {
                 Allure.addAttachment("Screenshot on Failure",
                         new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
@@ -61,7 +61,13 @@ public class Hook extends BaseTest {
     @After(value = "@api")
     public void apiTearDown(Scenario scenario) {
         if (scenario.isFailed()) {
-            System.out.println("Attach screenshot");
+            System.out.println("Scenario failed: " + scenario.getName());
+            try {
+                Allure.addAttachment("Screenshot on Failure",
+                        new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         System.out.println("Closing service");

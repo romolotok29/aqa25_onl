@@ -40,4 +40,5 @@ public class CheckoutInfoPage extends BasePage {
 
         return new CheckoutOverviewPage(driver);
     }
+
 }

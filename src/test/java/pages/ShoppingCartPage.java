@@ -26,7 +26,7 @@ public class ShoppingCartPage extends BasePage {
         return pagePath;
     }
 
-    public CheckoutInfoPage moveToCheckout() {
+    public CheckoutInfoPage proceedToCheckout() {
         checkoutButton.click();
         return new CheckoutInfoPage(driver);
     }
