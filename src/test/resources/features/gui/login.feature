@@ -1,4 +1,4 @@
-@gui
+@login
 Feature: Login tests
 
   Background:

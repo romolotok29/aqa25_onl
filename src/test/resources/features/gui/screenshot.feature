@@ -1,3 +1,4 @@
+@screenshot
 Feature: Screenshot
 
   Scenario: Taking a screenshot on test failure

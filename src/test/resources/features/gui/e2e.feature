@@ -1,3 +1,4 @@
+@e2e
 Feature: E2E test
   Scenario: Login, add to cart and checkout successfully
     Given init browser

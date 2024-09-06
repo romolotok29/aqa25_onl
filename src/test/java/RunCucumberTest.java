@@ -8,7 +8,7 @@ import org.testng.annotations.Listeners;
         features = {"src/test/resources/features"},
         glue = "stepsDefinition",
         plugin = {"json:target/cucumber.json", "html:target/site/cucumber-pretty.html"},
-        tags = "@gui"
+        tags = "@e2e or @login or @screenshot"
 )
 @Listeners(AllureTestNg.class)
 public class RunCucumberTest extends AbstractTestNGCucumberTests {
